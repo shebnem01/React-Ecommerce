@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Slider.module.css";
 import { sliderData } from "mock/sliderData";
 import SliderItem from "./SliderItem/SliderItem";
@@ -16,6 +16,18 @@ const Slider = () => {
       prevCurrentItem === 0 ? sliderLength - 1 : prevCurrentItem - 1
     );
   };
+  useEffect(() => {
+    setCurrentItem(0);
+  }, []);
+  let slideInterval;
+  function auto() {
+    slideInterval = setInterval(nextSlider, 3000);
+  }
+  useEffect(() => {
+    auto();
+    return ()=>clearInterval(slideInterval);
+  }, [currentItem]);
+  
   const sliderView = sliderData.map((slide, index) => (
     <SliderItem
       currentItem={currentItem}

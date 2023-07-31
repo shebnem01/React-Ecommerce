@@ -1,5 +1,6 @@
 import Footer from "components/Footer";
 import Header from "components/Header";
+import { AdminOnlyRoute } from "feature/header/components/hiddenLinks/HiddenLinks";
 import Admin from "pages/Admin";
 import Login from "pages/Auth/Login";
 import Register from "pages/Auth/Register";
@@ -15,9 +16,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to={ROUTER.HOME} replace />} />
         <Route path={ROUTER.HOME} element={<Home />} />
-        <Route path={ROUTER.ADMIN} element={<Admin />} />
+        <Route
+          path="/admin/*"
+          element={
+            <AdminOnlyRoute>
+              <Admin />{" "}
+            </AdminOnlyRoute>
+          }
+        />
         <Route path={ROUTER.CONTACT} element={<Contact />} />
-
         <Route path={ROUTER.LOGIN} element={<Login />} />
         <Route path={ROUTER.REGISTER} element={<Register />} />
         <Route path={ROUTER.RESET} element={<Reset />} />

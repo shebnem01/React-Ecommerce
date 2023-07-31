@@ -14,6 +14,8 @@ import { ROUTER } from "shared/constant/router";
 import Logo from "feature/header/components/Logo/Logo";
 import { REMOVE_ACTIVE_USER, SET_ACTIVE_USER } from "redux/authSlice";
 import {
+  AdminOnlyLink,
+  AdminOnlyRoute,
   ShowLogin,
   ShowLogout,
 } from "feature/header/components/hiddenLinks/HiddenLinks";
@@ -110,27 +112,27 @@ const Header = () => {
                     </Link>
                   </div>
                 </ShowLogout>
-               <ShowLogin>
-               <div
-                  onClick={handleLogOut}
-                  className={`${styles["logout"]} ${styles["header-group-item"]}`}
-                >
-                  <Link to={ROUTER.HOME}>
-                    <LuLogOut size={24} />
-                    <div className={styles["header-text"]}>Logout</div>
-                  </Link>
-                </div>
-               </ShowLogin>
-              <ShowLogin>
-              <div
-                  className={`${styles["my-orders"]} ${styles["header-group-item"]}`}
-                >
-                  <Link to={ROUTER.ORDERS}>
-                    <MdFavoriteBorder size={24} />
-                    <div className={styles["header-text"]}>my orders</div>
-                  </Link>
-                </div>
-              </ShowLogin>
+                <ShowLogin>
+                  <div
+                    onClick={handleLogOut}
+                    className={`${styles["logout"]} ${styles["header-group-item"]}`}
+                  >
+                    <Link to={ROUTER.HOME}>
+                      <LuLogOut size={24} />
+                      <div className={styles["header-text"]}>Logout</div>
+                    </Link>
+                  </div>
+                </ShowLogin>
+                <ShowLogin>
+                  <div
+                    className={`${styles["my-orders"]} ${styles["header-group-item"]}`}
+                  >
+                    <Link to={ROUTER.ORDERS}>
+                      <MdFavoriteBorder size={24} />
+                      <div className={styles["header-text"]}>my orders</div>
+                    </Link>
+                  </div>
+                </ShowLogin>
 
                 <div
                   className={`${styles["my-cart"]} ${styles["header-group-item"]}`}
@@ -160,11 +162,13 @@ const Header = () => {
           </div>
           <nav>
             <ul className={styles.list}>
-              <li>
-                <NavLink className={activeClassName} to={ROUTER.ADMIN}>
-                  admin
-                </NavLink>
-              </li>
+              <AdminOnlyLink>
+                <li>
+                  <NavLink className={activeClassName} to={ROUTER.ADMIN}>
+                    admin
+                  </NavLink>
+                </li>
+              </AdminOnlyLink>
 
               <li>
                 <NavLink className={activeClassName} to={ROUTER.HOME}>

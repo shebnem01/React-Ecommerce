@@ -6,6 +6,9 @@ export const ROUTER={
     REGISTER:"/register",
     RESET:"/reset",
     ORDERS:"/my-orders",
-    CART:"/cart"
+    CART:"/cart",
+    ADD_PRODUCTS:"/add-products",
+    VIEW_PRODUCTS:"/view-products",
+    ADMIN_ORDERS:"/orders",
 }
 

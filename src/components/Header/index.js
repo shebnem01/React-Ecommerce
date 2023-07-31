@@ -13,6 +13,10 @@ import { useDispatch } from "react-redux";
 import { ROUTER } from "shared/constant/router";
 import Logo from "feature/header/components/Logo/Logo";
 import { REMOVE_ACTIVE_USER, SET_ACTIVE_USER } from "redux/authSlice";
+import {
+  ShowLogin,
+  ShowLogout,
+} from "feature/header/components/hiddenLinks/HiddenLinks";
 
 const Header = () => {
   const [actieMenu, setActiveMenu] = useState(false);
@@ -20,9 +24,8 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("component yaradildi")
+    console.log("component yaradildi");
     onAuthStateChanged(auth, (user) => {
-   
       if (user) {
         const { email, displayName } = user;
         const uid = user.uid;
@@ -44,7 +47,7 @@ const Header = () => {
         dispatch(REMOVE_ACTIVE_USER());
       }
     });
-  }, [dispatch,userName]);
+  }, [dispatch, userName]);
 
   const handleShow = () => {
     setActiveMenu((prevActiveMenu) => !prevActiveMenu);
@@ -89,25 +92,26 @@ const Header = () => {
             </div>
             <div className="col-lg-4">
               <div className={styles["header-group"]}>
-                {userName && (
+                <ShowLogin>
                   <div
                     className={`${styles["my-account"]} ${styles["header-group-item"]}`}
                   >
+                    <BiUser size={24} />
+                    <div className={styles["header-text"]}>{userName}</div>
+                  </div>
+                </ShowLogin>
+                <ShowLogout>
+                  <div
+                    className={`${styles["login"]} ${styles["header-group-item"]}`}
+                  >
                     <Link to={ROUTER.LOGIN}>
                       <BiUser size={24} />
-                      <div className={styles["header-text"]}>{userName}</div>
+                      <div className={styles["header-text"]}>LOGIN</div>
                     </Link>
                   </div>
-                )}
-                <div
-                  className={`${styles["login"]} ${styles["header-group-item"]}`}
-                >
-                  <Link to={ROUTER.LOGIN}>
-                    <BiUser size={24} />
-                    <div className={styles["header-text"]}>LOGIN</div>
-                  </Link>
-                </div>
-                <div
+                </ShowLogout>
+               <ShowLogin>
+               <div
                   onClick={handleLogOut}
                   className={`${styles["logout"]} ${styles["header-group-item"]}`}
                 >
@@ -116,7 +120,9 @@ const Header = () => {
                     <div className={styles["header-text"]}>Logout</div>
                   </Link>
                 </div>
-                <div
+               </ShowLogin>
+              <ShowLogin>
+              <div
                   className={`${styles["my-orders"]} ${styles["header-group-item"]}`}
                 >
                   <Link to={ROUTER.ORDERS}>
@@ -124,6 +130,7 @@ const Header = () => {
                     <div className={styles["header-text"]}>my orders</div>
                   </Link>
                 </div>
+              </ShowLogin>
 
                 <div
                   className={`${styles["my-cart"]} ${styles["header-group-item"]}`}

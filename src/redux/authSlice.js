@@ -28,5 +28,6 @@ export const authSlice = createSlice({
 export const selectEmail = (state) => state.auth.email;
 export const selectUseName = (state) => state.auth.useName;
 export const selectUserID = (state) => state.auth.uid;
+export const selectIsLoggediIn = (state) => state.auth.isLoggedIn;
 export default authSlice.reducer;
 export const { SET_ACTIVE_USER,REMOVE_ACTIVE_USER } = authSlice.actions;

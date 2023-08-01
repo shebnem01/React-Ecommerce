@@ -39,7 +39,8 @@ const Login = () => {
     [user]
   );
   const handleChange = (e) => {
-    user[e.target.name] = e.target.value;
+    const { value, name } = e.target;
+    setUser({...user,[name] : value})
   };
   return (
     <>

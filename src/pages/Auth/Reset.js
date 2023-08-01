@@ -13,7 +13,8 @@ const Reset = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const handleChange = (e) => {
-    user[e.target.name] = e.target.value;
+    const { value, name } = e.target;
+    setUser({ ...user, [name]: value });
   };
   const handleResetPassword = (e) => {
     const { email } = user;

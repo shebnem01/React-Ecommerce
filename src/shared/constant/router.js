@@ -7,8 +7,8 @@ export const ROUTER={
     RESET:"/reset",
     ORDERS:"/my-orders",
     CART:"/cart",
-    ADD_PRODUCTS:"/add-products",
-    VIEW_PRODUCTS:"/view-products",
-    ADMIN_ORDERS:"/orders",
+    ADD_PRODUCTS:"add-products",
+    VIEW_PRODUCTS:"view-products",
+    ADMIN_ORDERS:"orders",
 }
 

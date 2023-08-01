@@ -1,0 +1,11 @@
+.navbar{
+    border-radius: 20px;
+    background-color: #000;
+
+}
+.navbar li{
+    line-height: 50px;
+}
+.navbar li a.active{
+    color: var(--color-menu-act);
+}

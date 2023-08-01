@@ -20,7 +20,7 @@ function App() {
           path="/admin/*"
           element={
             <AdminOnlyRoute>
-              <Admin />{" "}
+              <Admin />
             </AdminOnlyRoute>
           }
         />

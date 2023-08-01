@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { ROUTER } from "shared/constant/router";
 import Logo from "feature/header/components/Logo/Logo";
-import { REMOVE_ACTIVE_USER, SET_ACTIVE_USER } from "redux/authSlice";
+import { REMOVE_ACTIVE_USER, SET_ACTIVE_USER } from "redux/slice/authSlice";
 import {
   AdminOnlyLink,
   AdminOnlyRoute,

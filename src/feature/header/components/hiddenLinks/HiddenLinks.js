@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { selectIsLoggediIn,selectEmail } from "redux/authSlice";
+import { selectIsLoggediIn,selectEmail } from "redux/slice/authSlice";
 
 export const ShowLogin = ({ children }) => {
   const isLoggedIn = useSelector(selectIsLoggediIn);

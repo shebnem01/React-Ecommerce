@@ -13,17 +13,15 @@ const Admin = () => {
       <div className={styles.admin}>
         <div className="row">
           <div className="col-lg-3">
-            {" "}
             <Navbar />
           </div>
           <div className="col-lg-9">
-            {" "}
             <div className={styles.content}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path={ROUTER.ADMIN_ORDERS} element={<Orders />} />
                 <Route path={ROUTER.VIEW_PRODUCTS} element={<ViewProducts />} />
-                <Route path={ROUTER.ADD_PRODUCTS} element={<AddProducts />} />
+                <Route path={ROUTER.ADD_PRODUCTS+"/:id"} element={<AddProducts />} />
               </Routes>
             </div>
           </div>

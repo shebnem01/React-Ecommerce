@@ -5,8 +5,10 @@ import { db, storage } from "../../../../firebase/config";
 import { toast } from "react-toastify";
 import { addDoc, collection } from "firebase/firestore";
 import Loader from "shared/components/Loader/Loader";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ROUTER } from "shared/constant/router";
+import { useSelector } from "react-redux";
+import { selectProducts } from "redux/slice/productSlice";
 const categoryData = [
   { title: "Book", id: 1 },
   { title: "Tshirt", id: 2 },
@@ -21,18 +23,36 @@ const initialState = {
   brand: "",
   desc: "",
 };
+
 const AddProducts = () => {
-  const [product, setProduct] = useState({
-    ...initialState,
+  const params = useParams();
+  const { id } = params;
+  const detectForm = (id, f1, f2) => {
+    if (id === "add") {
+      return f1;
+    }
+    return f2;
+  };
+  const allProducts = useSelector(selectProducts);
+  const findEditProduct = allProducts.find((item) => item.id === id);
+  console.log(findEditProduct);
+  const [product, setProduct] = useState(() => {
+    const productState = detectForm(
+      id,
+      { ...initialState },
+      { ...findEditProduct }
+    );
+    return productState;
   });
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { value, name } = e.target;
     setProduct({ ...product, [name]: value });
   };
-  const addImageToStore = useCallback(
+  const addImage = useCallback(
     (e) => {
       const file = e.target.files[0];
       const storageRef = ref(storage, `images/${Date.now()}${file.name}`);
@@ -57,7 +77,8 @@ const AddProducts = () => {
     },
     [uploadProgress, product]
   );
-  const handleSubmit = (e) => {
+
+  const addProduct = (e) => {
     e.preventDefault();
     setIsLoading(true);
     try {
@@ -73,7 +94,18 @@ const AddProducts = () => {
       setUploadProgress(0);
       setProduct({ ...initialState });
       toast.success("Product upload successfully");
-      navigate(ROUTER.VIEW_PRODUCTS)
+      navigate("/admin/" + ROUTER.VIEW_PRODUCTS);
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error.message);
+    }
+  };
+  const editProduct = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      setIsLoading(false);
+      toast.success("Product edited successfully");
     } catch (error) {
       setIsLoading(false);
       toast.error(error.message);
@@ -83,8 +115,13 @@ const AddProducts = () => {
     <>
       {isLoading && <Loader />}
       <div className={styles["add-product"]}>
-        <form onSubmit={handleSubmit} className={styles["add-form"]}>
-          <div className={styles.title}>Add new products</div>
+        <form
+          onSubmit={detectForm(id, addProduct, editProduct)}
+          className={styles["add-form"]}
+        >
+          <div className={styles.title}>
+            {detectForm(id, "Add new product", "Edit  Product")}
+          </div>
           <div className={styles["form-group"]}>
             <label>Product name</label>
             <input
@@ -107,7 +144,7 @@ const AddProducts = () => {
                 </div>
               </div>
             )}
-            <input type="file" accept="image/*" onChange={addImageToStore} />
+            <input type="file" accept="image/*" onChange={addImage} />
 
             {uploadProgress > 0 && (
               <input
@@ -165,7 +202,7 @@ const AddProducts = () => {
           </div>
 
           <button type="submit" className={styles["addb-btn"]}>
-            Add product
+            {detectForm(id, "Add  product", "Save  Product")}
           </button>
         </form>
       </div>{" "}

@@ -15,7 +15,7 @@ const Navbar = () => {
             <NavLink className={activeLink} to={ROUTER.VIEW_PRODUCTS}>All products</NavLink>
           </li>
           <li>
-            <NavLink className={activeLink}  to={ROUTER.ADD_PRODUCTS}>Add products </NavLink>
+            <NavLink className={activeLink}  to={ROUTER.ADD_PRODUCTS+"/add"}>Add products </NavLink>
           </li>
           <li>
             <NavLink className={activeLink}  to={ROUTER.ADMIN_ORDERS}>Orders</NavLink>

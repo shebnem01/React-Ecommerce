@@ -15,13 +15,12 @@ export const authSlice = createSlice({
       state.email = email;
       state.userName = userName;
       state.uid = uid;
-      console.log(state.isLoggedIn)
     },
     REMOVE_ACTIVE_USER: (state) => {
       state.isLoggedIn = false;
       state.email = null;
       state.userName = null;
-      state.uid = null;  console.log(state.isLoggedIn)
+      state.uid = null; 
     },
   },
 });

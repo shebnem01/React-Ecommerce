@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Slider.module.css";
 import { sliderData } from "mock/sliderData";
-import SliderItem from "./SliderItem/SliderItem";
+import SliderItem from "../SliderItem/SliderItem";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 const Slider = () => {
   const [currentItem, setCurrentItem] = useState(0);

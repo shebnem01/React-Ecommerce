@@ -1,19 +1,19 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./AddProduct.module.css";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../../../../firebase/config";
 import { toast } from "react-toastify";
-import { addDoc, collection } from "firebase/firestore";
+import { Timestamp, addDoc, collection, doc, setDoc } from "firebase/firestore";
 import Loader from "shared/components/Loader/Loader";
 import { useNavigate, useParams } from "react-router-dom";
 import { ROUTER } from "shared/constant/router";
 import { useSelector } from "react-redux";
 import { selectProducts } from "redux/slice/productSlice";
 const categoryData = [
-  { title: "Book", id: 1 },
-  { title: "Tshirt", id: 2 },
-  { title: "Trousers", id: 3 },
-  { title: "Notebook", id: 4 },
+  { title: "Notebooks", id: 1 },
+  { title: "Personal Computers", id: 2 },
+  { title: "TV, accessories", id: 3 },
+  { title: "Headphones", id: 4 },
 ];
 const initialState = {
   name: "",
@@ -35,7 +35,7 @@ const AddProducts = () => {
   };
   const allProducts = useSelector(selectProducts);
   const findEditProduct = allProducts.find((item) => item.id === id);
-  console.log(findEditProduct);
+
   const [product, setProduct] = useState(() => {
     const productState = detectForm(
       id,
@@ -94,7 +94,7 @@ const AddProducts = () => {
       setUploadProgress(0);
       setProduct({ ...initialState });
       toast.success("Product upload successfully");
-      navigate("/admin/" + ROUTER.VIEW_PRODUCTS);
+      navigate("/admin/" + ROUTER.ALL_PRODUCTS);
     } catch (error) {
       setIsLoading(false);
       toast.error(error.message);
@@ -103,14 +103,32 @@ const AddProducts = () => {
   const editProduct = (e) => {
     e.preventDefault();
     setIsLoading(true);
+    if(product.imgURL!==findEditProduct.imgURL){
+      const storageRef = ref(storage, findEditProduct.imgURL);
+      deleteObject(storageRef);
+    }
     try {
+      setDoc(doc(db, "products", id), {
+        name: product.name,
+        category: product.category,
+        imgURL: product.imgURL,
+        price: Number(product.price),
+        brand: product.brand,
+        desc: product.desc,
+      });
       setIsLoading(false);
-      toast.success("Product edited successfully");
+      toast.success("Product edited successfully");console.log(findEditProduct.createdAt)
+       navigate("/admin/" + ROUTER.ALL_PRODUCTS);
     } catch (error) {
       setIsLoading(false);
       toast.error(error.message);
     }
   };
+  useEffect(() => {
+    if (id === "add") {
+      setProduct({ ...initialState });
+    }
+  }, [id]);
   return (
     <>
       {isLoading && <Loader />}

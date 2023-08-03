@@ -8,7 +8,10 @@ export const ROUTER={
     ORDERS:"/my-orders",
     CART:"/cart",
     ADD_PRODUCTS:"add-products",
-    VIEW_PRODUCTS:"view-products",
+    ALL_PRODUCTS:"all-products",
     ADMIN_ORDERS:"orders",
+    DASHBOARD:"dashboard",
+    PRODUCTS:"/products",
+    PRODUCT_DETAIL:"/product-detail"
 }
 

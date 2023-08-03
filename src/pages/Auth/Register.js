@@ -14,6 +14,10 @@ const Register = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setUser({...user,[name]:value})
+  };
   const handleRegister = useCallback(
     (e) => {
       const { email, password, cPassword } = user;
@@ -29,7 +33,6 @@ const Register = () => {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
           setIsLoading(false);
           toast.success("Registration Successfully...");
           navigate(ROUTER.LOGIN);
@@ -41,10 +44,7 @@ const Register = () => {
     },
     [user]
   );
-  const handleChange = (e) => {
-    const { value, name } = e.target;
-    setUser({...user,[name]:value})
-  };
+
   return (
     <>
       <div className={styles.auth}>

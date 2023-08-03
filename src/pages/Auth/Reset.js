@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styles from "./Auth.module.css";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase/config";
@@ -16,19 +16,26 @@ const Reset = () => {
     const { value, name } = e.target;
     setUser({ ...user, [name]: value });
   };
-  const handleResetPassword = (e) => {
-    const { email } = user;
-    e.preventDefault();
-    setIsLoading(true);
-    sendPasswordResetEmail(auth, email)
-      .then(() => {
-        toast.success("Check your email for a reset link");
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        toast.error(error.message);
-      });
-  };
+  const handleResetPassword = useCallback(
+    (e) => {
+      const { email } = user;
+      if (!email) {
+        toast.error("Email required");
+        return;
+      }
+      e.preventDefault();
+      setIsLoading(true);
+      sendPasswordResetEmail(auth, email)
+        .then(() => {
+          toast.success("Check your email for a reset link");
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          toast.error(error.message);
+        });
+    },
+    [user]
+  );
   return (
     <>
       {isLoading && <Loader />}
@@ -43,7 +50,6 @@ const Reset = () => {
           />
           <button className={styles.btn}>Reset password</button>
           <div className="d-flex align-items-center justify-content-between">
-            {" "}
             <span>
               <Link to={ROUTER.LOGIN}>Login</Link>
             </span>

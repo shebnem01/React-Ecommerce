@@ -1,0 +1,16 @@
+.breadcumb {
+    background-color: red;
+}
+
+.product-detail {
+    padding: 100px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.product-img {
+    width: 300px;
+    border: 1px solid #ccc;
+    height: 300px;
+}

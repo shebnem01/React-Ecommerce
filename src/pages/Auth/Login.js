@@ -11,10 +11,13 @@ const Login = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
-    cPassword: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setUser({...user,[name] : value})
+  };
   const handleLogin = useCallback(
     (e) => {
       const { email, password } = user;
@@ -38,10 +41,7 @@ const Login = () => {
     },
     [user]
   );
-  const handleChange = (e) => {
-    const { value, name } = e.target;
-    setUser({...user,[name] : value})
-  };
+  
   return (
     <>
       {isLoading && <Loader />}

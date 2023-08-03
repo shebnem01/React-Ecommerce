@@ -1,0 +1,25 @@
+.product-filter{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    background-color: #aaa;
+    padding: 10px;
+    width: 300px;
+    height: 100vh;
+}
+.categories,.brand{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.categories button,.brand button{
+    padding: 10px 5px;
+    background-color: #eee;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: left;
+}
+.active{
+    background-color: red !important;
+}

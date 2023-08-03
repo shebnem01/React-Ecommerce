@@ -9,10 +9,10 @@ const Navbar = () => {
       <nav>
         <ul>
           <li>
-            <NavLink className={activeLink}  to='home'>Dashboard</NavLink>
+            <NavLink className={activeLink}  to={ROUTER.DASHBOARD}>Dashboard</NavLink>
           </li>
           <li>
-            <NavLink className={activeLink} to={ROUTER.VIEW_PRODUCTS}>All products</NavLink>
+            <NavLink className={activeLink} to={ROUTER.ALL_PRODUCTS}>All products</NavLink>
           </li>
           <li>
             <NavLink className={activeLink}  to={ROUTER.ADD_PRODUCTS+"/add"}>Add products </NavLink>

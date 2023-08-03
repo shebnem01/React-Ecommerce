@@ -15,7 +15,6 @@ import Logo from "feature/header/components/Logo/Logo";
 import { REMOVE_ACTIVE_USER, SET_ACTIVE_USER } from "redux/slice/authSlice";
 import {
   AdminOnlyLink,
-  AdminOnlyRoute,
   ShowLogin,
   ShowLogout,
 } from "feature/header/components/hiddenLinks/HiddenLinks";
@@ -26,7 +25,6 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("component yaradildi");
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const { email, displayName } = user;
@@ -176,13 +174,8 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink className={activeClassName} to={ROUTER.HOME}>
+                <NavLink className={activeClassName} to={ROUTER.PRODUCTS}>
                   products
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className={activeClassName} to={ROUTER.HOME}>
-                  collection
                 </NavLink>
               </li>
               <li>

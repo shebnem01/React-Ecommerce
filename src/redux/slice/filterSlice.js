@@ -57,7 +57,7 @@ const filterSlice = createSlice({
     },
     SORT_BRAND: (state, action) => {
       const { brand, products } = action.payload;
-      console.log(action.payload)
+      console.log(action.payload);
       let newProducts = [];
       if (brand === "All") {
         newProducts = products;
@@ -65,10 +65,21 @@ const filterSlice = createSlice({
       newProducts = products.filter((item) => item.brand === brand);
       state.filteredProducts = newProducts;
     },
+    SORT_PRICE: (state, action) => {
+      const { products, price } = action.payload;
+      let newProducts = [];
+      newProducts = products.filter((item) => item.price <= price);
+      state.filteredProducts = newProducts;
+    },
   },
 });
 export const selectFilteredProducts = (state) => state.filter.filteredProducts;
-export const { SEARCH_FİLTER, SORT_FİLTER, SORT_CATEGORY, SORT_BRAND } =
-  filterSlice.actions;
+export const {
+  SEARCH_FİLTER,
+  SORT_FİLTER,
+  SORT_CATEGORY,
+  SORT_BRAND,
+  SORT_PRICE,
+} = filterSlice.actions;
 
 export default filterSlice.reducer;

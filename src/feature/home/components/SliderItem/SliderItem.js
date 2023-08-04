@@ -13,16 +13,19 @@ const SliderItem = ({ slide, index, currentItem }) => {
       }
     >
       {currentItem === index && (
-        <>
-          <div className={styles["slider-img"]}>
-            <img src={img} alt={title} />
-          </div>
-          <div className={styles["slider-text"]}>
+    <div className="container">
+    <div className= {`${styles.content} row align-items-center`}>
+          
+          <div className={`${styles["slider-text"]} col-xl-6 col-sm-7`}>
             <h1 className={styles.title}>{title}</h1>
             <div className={styles.desc}>{info}</div>
             <button className={styles["slider-btn"]}>Shop now</button>
           </div>
-        </>
+          <div className={`${styles["slider-img"]} col-xl-6 col-sm-5`}>
+            <img src={img} alt={title} />
+          </div>
+        </div>
+    </div>
       )}
     </div>
   );

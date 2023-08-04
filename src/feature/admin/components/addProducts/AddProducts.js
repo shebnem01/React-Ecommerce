@@ -9,12 +9,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ROUTER } from "shared/constant/router";
 import { useSelector } from "react-redux";
 import { selectProducts } from "redux/slice/productSlice";
-const categoryData = [
-  { title: "Notebooks", id: 1 },
-  { title: "Personal Computers", id: 2 },
-  { title: "TV, accessories", id: 3 },
-  { title: "Headphones", id: 4 },
-];
+import { categoryData } from "mock/categoryData";
+
 const initialState = {
   name: "",
   category: "",

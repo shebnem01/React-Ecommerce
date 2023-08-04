@@ -13,6 +13,10 @@ button,input,textarea,select{
     border: none;
     background-color: transparent;
 }
+ul{
+    margin: 0;
+    padding: 0;
+}
 li{
     list-style: none;
 }
@@ -22,9 +26,4 @@ a{
 }
 img{
     width: 100%;
-}
-@media(min-width:1200px){
-    .container-fluid{
-        padding: 0 95px;
-    }
 }

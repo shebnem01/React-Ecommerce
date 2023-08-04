@@ -8,6 +8,7 @@ import { SEARCH_FİLTER, SORT_FİLTER } from "redux/slice/filterSlice";
 import { selectProducts } from "redux/slice/productSlice";
 const ProductsPage = () => {
   const [grid, setGrid] = useState(true);
+
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("latest");
   const products = useSelector(selectProducts);
@@ -54,7 +55,7 @@ const ProductsPage = () => {
       <aside>
         <ProductFilter />
       </aside>
-      <Products grid={grid} />
+      <Products grid={grid} setGrid={setGrid} />
     </div>
   );
 };

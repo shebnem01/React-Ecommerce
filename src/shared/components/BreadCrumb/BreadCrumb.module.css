@@ -1,0 +1,31 @@
+.breadcrumb{
+    background-color: #eee;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+.title{
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.list{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.list a{
+    color: #333;
+}
+.list li{
+    color: var(--color-menu-act);
+    position: relative;
+}
+.list li:last-child:before{
+    position: absolute;
+    left: -9px;
+    content:"/"
+}

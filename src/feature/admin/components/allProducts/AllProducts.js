@@ -45,9 +45,7 @@ const AllProducts = () => {
       deleteDoc(doc(db, "products", id));
       const storageRef = ref(storage, imgURL);
       deleteObject(storageRef);
-      console.log(storageRef);
       toast.success("Product deleted successfully");
-      console.log(imgURL);
     } catch (error) {
       toast.error(error.message);
     }

@@ -19,7 +19,7 @@ export const ShowLogout = ({ children }) => {
 };
 export const AdminOnlyLink=({ children }) => {
   const email = useSelector(selectEmail);
-  if (email==="shabnamrashidova90@gmail.com") {
+  if (email==="test@gmail.com") {
     return children;
   }
   return null;
@@ -27,7 +27,7 @@ export const AdminOnlyLink=({ children }) => {
 export const AdminOnlyRoute=({ children }) => {
   const email = useSelector(selectEmail);
   const navigate=useNavigate();
-  if (email==="shabnamrashidova90@gmail.com") {
+  if (email==="test@gmail.com") {
     return children;
   }
   return (

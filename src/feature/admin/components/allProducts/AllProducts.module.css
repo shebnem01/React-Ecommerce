@@ -4,3 +4,24 @@
 .all-products-table {
     width: 100%;
 }
+.delete-product{
+    cursor: pointer;
+}
+.all-products-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.all-products-table table {
+    width: 100%;
+    margin: 50px 0;
+    max-width: 100%;
+}
+@media(max-width:768px){
+    .all-products-table {
+        font-size: 14px;
+    }
+    .all-products-table img{
+        width: 100px;
+    }
+}

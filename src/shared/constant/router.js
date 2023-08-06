@@ -13,6 +13,6 @@ export const ROUTER={
     ADMIN_ORDERS:"orders",
     DASHBOARD:"dashboard",
     PRODUCTS:"/products",
-    PRODUCT_DETAIL:"/product-detail"
+    PRODUCT_DETAIL:"/product-detail",
 }
 

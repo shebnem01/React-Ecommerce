@@ -1,14 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./ProductDetail.module.css";
-import { Link, useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 import { db } from "../../../../firebase/config";
 import { doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import Loader from "shared/components/Loader/Loader";
-import { ROUTER } from "shared/constant/router";
+import {
+  ADD_CART,
+  DECREASE_QUANTITY,
+  selectCartItems,
+} from "redux/slice/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
+  const singleProduct = cartItems.find((item) => item.id === id);
+  const isCartAdded = cartItems.findIndex((item) => item.id === id);
+  const addToCart =useCallback( (product) => {
+    dispatch(ADD_CART(product));
+  },[dispatch])
+  const handleIncrease = useCallback((cartProduct) => {
+    dispatch(ADD_CART(cartProduct));
+  },[dispatch])
+  const handleDecrease = (cartProduct) => {
+    dispatch(DECREASE_QUANTITY(cartProduct));
+  };
   useEffect(() => {
     getSingleProduct();
   }, [product]);
@@ -29,36 +47,61 @@ const ProductDetail = () => {
   };
 
   return (
-    
-    <>
-    <div className={styles.breadcumb}>
-      <div className={styles.title}>Product detail</div>
-      <Link to={ROUTER.PRODUCTS}>Back to products</Link>
-    </div>
+    <div className="container">
       {product === null ? (
         <Loader />
       ) : (
         <div className={styles["product-detail"]}>
-
-          <div className={styles["product-img"]}>
-            <img src={product.imgURL} alt="" />
-          </div>
-          <div className={styles['product-content']}>
-            <div className={styles.name}>{product.name}</div>
-            <div className={styles.price}>${product.price}</div>
-            <div className={styles.desc}>{product.desc}</div>
-            <div className={styles.brand}>Brand{product.brand}</div>
-            <div className={styles['product-action']}>
-              <button className={styles.dec}>-</button>
-              <count className={styles.count}>1</count>
-              <button className={styles.inc}>+</button>
-                <button className={styles['add-to-cart']}>add to cart</button>
+          <div className="row justify-content-center">
+            <div className="col-lg-5 col-md-6 mb-3">
+              <div className={styles["product-img"]}>
+                <img src={product.imgURL} alt="" />
+              </div>
             </div>
+            <div className="col-md-6 col-lg-7 mb-3">
+              {" "}
+              <div className={styles["product-content"]}>
+                <div className={styles.name}>{product.name}</div>
+                <div className={styles.price}>${product.price}</div>
+                <div className={styles.desc}>{product.desc}</div>
+                <div className={styles.brand}>
+                  Brand: <b>{product.brand}</b>
+                </div>
+                <div className={styles["product-action"]}>
+                  {isCartAdded < 0 ? null : (
+                    <div className={styles.counter}>
+                      <button
+                        className={styles.dec}
+                        onClick={() => handleDecrease(product)}
+                        disabled={singleProduct.quantity === 1}
+                      >
+                        -
+                      </button>
+                      <div className={styles.count}>
+                        {singleProduct.quantity}
+                      </div>
+                      <button
+                        className={styles.inc}
+                        onClick={() => handleIncrease(product)}
+                      >
+                        +
+                      </button>
+                    </div>
+                  )}
 
+                  <button
+                    className={styles["add-to-cart"]}
+                    onClick={() => addToCart(product)}
+                  >
+                    add to cart
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

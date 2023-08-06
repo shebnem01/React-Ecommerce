@@ -8,7 +8,6 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase/config";
 import { toast } from "react-toastify";
-import { RiSearchLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { ROUTER } from "shared/constant/router";
 import Logo from "shared/components/Logo/Logo";
@@ -18,7 +17,6 @@ import {
   ShowLogin,
   ShowLogout,
 } from "feature/header/components/hiddenLinks/HiddenLinks";
-import Search from "shared/components/Search/Search";
 import {
   CALCULATE_SUB_QUANTITY,
   selectCartItems,
@@ -29,7 +27,6 @@ const Header = () => {
   const [actieMenu, setActiveMenu] = useState(false);
   const [userName, setUserName] = useState("");
   const [show, setShow] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
   const cartItems = useSelector(selectCartItems);
   const cartQuantity = useSelector(selectSubQuantity);
   const navigate = useNavigate();
@@ -88,38 +85,8 @@ const Header = () => {
                 <Logo />
               </Link>
             </div>
-            <div className="col-md-5 d-none d-lg-block">
-              <Search />
-            </div>
             <div className="col-lg-3 col-8">
               <div className={styles["header-group"]}>
-                <div className={styles["header-group-item"]}>
-                  <div
-                    onClick={() => setShowSearch((prevState) => !prevState)}
-                    className={styles["search-icon"]}
-                  >
-                    <RiSearchLine size={24} />
-                  </div>
-                  <div
-                    className={
-                      showSearch
-                        ? `${styles["search-modal"]} ${styles.active}`
-                        : `${styles["search-modal"]}`
-                    }
-                  >
-                    <div
-                      className={styles.close}
-                      onClick={() => setShowSearch((prevState) => !prevState)}
-                    >
-                      <GrClose size={20} />
-                    </div>
-                    <div className={styles["search-wrap"]}>
-                      {" "}
-                      <Search />{" "}
-                    </div>
-                  </div>
-                </div>
-
                 <ShowLogout>
                   <div className={styles["header-group-item"]}>
                     <Link to={ROUTER.LOGIN}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./ProductFilter.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -33,12 +33,12 @@ const ProductFilter = () => {
   }, [dispatch, price, products]);
 
 
-  const changeCategory = (catName) => {
+  const changeCategory =useCallback( (catName) => {
     setCategory(catName);
-  };
-  const changeBrand = (brandName) => {
+  },[category])
+  const changeBrand =useCallback( (brandName) => {
     setBrand(brandName);
-  };
+  },[brand])
     const clearFilter=()=>{
       setCategory("All");
       setBrand("All");
@@ -90,7 +90,7 @@ const ProductFilter = () => {
           />
         </div>
       </div>
-      <button className="btn btn-danger" onClick={clearFilter}>Clear filter</button>
+      <button className={styles.btn} onClick={clearFilter}>Clear filter</button>
     </div>
   );
 };

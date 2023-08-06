@@ -1,11 +1,15 @@
-.navbar{
-    border-radius: 20px;
-    background-color: #000;
-
+.navbar {
+    border-radius: 5px;
+    background-color: var(--color-menu-act);
+    padding: 20px;
+    margin-bottom: 30px;
 }
-.navbar li{
+
+.navbar li {
+    font-weight: 500;
     line-height: 50px;
 }
-.navbar li a.active{
-    color: var(--color-menu-act);
+
+.navbar li a.active {
+    color: #333;
 }

@@ -15,6 +15,7 @@ const filterSlice = createSlice({
           product.name.toLowerCase().includes(search.toLowerCase()) ||
           product.category.toLowerCase().includes(search.toLowerCase())
       );
+      
       state.filteredProducts = newProduct;
     },
     SORT_FİLTER: (state, action) => {
@@ -49,15 +50,17 @@ const filterSlice = createSlice({
     SORT_CATEGORY: (state, action) => {
       const { category, products } = action.payload;
       let newProducts = [];
-      if (category === "All") {
-        newProducts = products;
-      }
+      // if (category === "All") {
+      //   // newProducts = products;
+      //   state.filteredProducts = products;
+      // }
+      let s=products.map((item) => item.category)
+      console.log(s,category)
       newProducts = products.filter((item) => item.category === category);
       state.filteredProducts = newProducts;
     },
     SORT_BRAND: (state, action) => {
       const { brand, products } = action.payload;
-      console.log(action.payload);
       let newProducts = [];
       if (brand === "All") {
         newProducts = products;
@@ -70,8 +73,11 @@ const filterSlice = createSlice({
       let newProducts = [];
       newProducts = products.filter((item) => item.price <= price);
       state.filteredProducts = newProducts;
-    },
+    }, GET_PRODUCTS:(state,action)=>{
+      state.filteredProducts=action.payload
+    }
   },
+ 
 });
 export const selectFilteredProducts = (state) => state.filter.filteredProducts;
 export const {
@@ -80,6 +86,7 @@ export const {
   SORT_CATEGORY,
   SORT_BRAND,
   SORT_PRICE,
+  GET_PRODUCTS
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

@@ -113,7 +113,7 @@ const AddProducts = () => {
         desc: product.desc,
       });
       setIsLoading(false);
-      toast.success("Product edited successfully");console.log(findEditProduct.createdAt)
+      toast.success("Product edited successfully");
        navigate("/admin/" + ROUTER.ALL_PRODUCTS);
     } catch (error) {
       setIsLoading(false);
@@ -138,7 +138,7 @@ const AddProducts = () => {
           </div>
           <div className={styles["form-group"]}>
             <label>Product name</label>
-            <input
+            <input required
               onChange={handleChange}
               type="text"
               name="name"
@@ -158,10 +158,10 @@ const AddProducts = () => {
                 </div>
               </div>
             )}
-            <input type="file" accept="image/*" onChange={addImage} />
+            <input required type="file" accept="image/*" onChange={addImage} />
 
             {uploadProgress > 0 && (
-              <input
+              <input 
                 type="text"
                 name="imgURL"
                 onChange={handleChange}
@@ -173,7 +173,7 @@ const AddProducts = () => {
 
           <div className={styles["form-group"]}>
             <label>Product price</label>
-            <input
+            <input required
               onChange={handleChange}
               type="text"
               name="price"
@@ -196,7 +196,7 @@ const AddProducts = () => {
 
           <div className={styles["form-group"]}>
             <label htmlFor="">Product company/brand</label>
-            <input
+            <input required
               onChange={handleChange}
               type="text"
               name="brand"
@@ -206,7 +206,7 @@ const AddProducts = () => {
           </div>
           <div className={styles["form-group"]}>
             <label htmlFor="">Product description</label>
-            <textarea
+            <textarea required
               onChange={handleChange}
               type="text"
               name="desc"
@@ -215,7 +215,7 @@ const AddProducts = () => {
             ></textarea>
           </div>
 
-          <button type="submit" className={styles["addb-btn"]}>
+          <button type="submit" className={styles["add-btn"]}>
             {detectForm(id, "Add  product", "Save  Product")}
           </button>
         </form>

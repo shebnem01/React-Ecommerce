@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   ADD_CART,
@@ -18,20 +18,30 @@ import { Link } from "react-router-dom";
 const Cart = () => {
   const cartItems = useSelector(selectCartItems);
   const cartQuantity = useSelector(selectSubQuantity);
+  const subTotal = useSelector(selectSubTotal);
   const dispatch = useDispatch();
-  const handleIncrease = (cartProduct) => {
-    dispatch(ADD_CART(cartProduct));
-  };
-  const handleDecrease = (cartProduct) => {
-    dispatch(DECREASE_QUANTITY(cartProduct));
-  };
-  const handleRemoveFromCart = (cartProduct) => {
-    dispatch(REMOVE_FROM_CART(cartProduct));
-  };
+  const handleIncrease = useCallback(
+    (cartProduct) => {
+      dispatch(ADD_CART(cartProduct));
+    },
+    [dispatch]
+  );
+  const handleDecrease = useCallback(
+    (cartProduct) => {
+      dispatch(DECREASE_QUANTITY(cartProduct));
+    },
+    [dispatch]
+  );
+  const handleRemoveFromCart = useCallback(
+    (cartProduct) => {
+      dispatch(REMOVE_FROM_CART(cartProduct));
+    },
+    [dispatch]
+  );
   useEffect(() => {
     dispatch(CALCULATE_SUB_TOTAL(cartItems));
-  }, [dispatch, cartItems]);
-  const subTotal = useSelector(selectSubTotal);
+  }, [dispatch,cartItems]);
+
   return (
     <div className="container">
       <div className={styles["cart-wrapper"]}>
@@ -39,7 +49,9 @@ const Cart = () => {
           <div className="alert alert-danger text-center py-5 my-5">
             Your cart is empty
             <br />
-            <Link to={ROUTER.PRODUCTS}>Continue to shopping</Link>
+            <Link className={styles.link} to={ROUTER.PRODUCTS}>
+              Continue to shopping
+            </Link>
           </div>
         ) : (
           <>
@@ -90,7 +102,9 @@ const Cart = () => {
                 })}
               </tbody>
             </table>
-            <div className={`${styles.subtotal} border  `}>SUBTOTAL ({cartQuantity}):${subTotal}</div>
+            <div className={`${styles.subtotal} border  `}>
+              SUBTOTAL ({cartQuantity}):${subTotal}
+            </div>
             <div className={styles["cart-footer"]}>
               <Link to={ROUTER.PRODUCTS}>continue to shopping</Link>
               <button onClick={() => dispatch(CLEAR_CART())}>Clear cart</button>

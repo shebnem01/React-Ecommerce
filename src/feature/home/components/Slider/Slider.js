@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./Slider.module.css";
 import { sliderData } from "mock/sliderData";
 import SliderItem from "../SliderItem/SliderItem";
@@ -6,16 +6,16 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 const Slider = () => {
   const [currentItem, setCurrentItem] = useState(0);
   const sliderLength = sliderData.length;
-  const nextSlider = () => {
+  const nextSlider = useCallback(() => {
     setCurrentItem((prevCurrentItem) =>
       prevCurrentItem === sliderLength - 1 ? 0 : prevCurrentItem + 1
     );
-  };
-  const prevSlider = () => {
+  },[currentItem])
+  const prevSlider =useCallback( () => {
     setCurrentItem((prevCurrentItem) =>
       prevCurrentItem === 0 ? sliderLength - 1 : prevCurrentItem - 1
     );
-  };
+  },[]);
   useEffect(() => {
     setCurrentItem(0);
   }, []);

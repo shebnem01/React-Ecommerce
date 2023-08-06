@@ -30,7 +30,7 @@ function App() {
           }
         />
         <Route path={ROUTER.CART} element={<Cart />} />
-        <Route path={ROUTER.CONTACT} element={<Contact />} />
+        {/* <Route path={ROUTER.CONTACT} element={<Contact />} /> */}
         <Route path={ROUTER.LOGIN} element={<Login />} />
         <Route path={ROUTER.REGISTER} element={<Register />} />
         <Route path={ROUTER.RESET} element={<Reset />} />

@@ -35,3 +35,13 @@
     .add-product input:hover,.add-product select:hover,.add-product textarea:hover{
         border-color: #000;
     }
+    .add-btn{
+        background-color: var(--color-menu-act);
+        color:#fff;
+        width: 200px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 15px 0;
+    }

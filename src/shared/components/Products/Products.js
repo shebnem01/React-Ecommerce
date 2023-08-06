@@ -8,31 +8,29 @@ import {
   selectProducts,
 } from "redux/slice/productSlice";
 import ProductItem from "feature/products/components/productItem/ProductItem";
-import { SEARCH_FİLTER, selectFilteredProducts } from "redux/slice/filterSlice";
+import { GET_PRODUCTS, selectFilteredProducts } from "redux/slice/filterSlice";
 const Products = ({ grid }) => {
-  const [search, setSearch] = useState("");
   const products = useSelector(selectProducts);
   const filteredProducts = useSelector(selectFilteredProducts);
   const { data, isLoading } = useFetchCollection("products");
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(SEARCH_FİLTER({ search, products }));
-  }, [dispatch, products, search]);
-
+  console.log(filteredProducts);
   useEffect(() => {
     dispatch(STORE_PRODUCTS(data));
   }, [dispatch, data]);
+  useEffect(() => {
+    dispatch(GET_PRODUCTS(products));
+  }, [dispatch, products]);
 
   useEffect(() => {
     dispatch(STORE_PRODUCTS_PRICE(data));
   }, [dispatch, data]);
 
   return (
-    <div className="row">
+    <div className={grid ? "row" : "row flex-column"}>
       {filteredProducts.length === 0 ? (
         <div className="alert alert-danger my-5 py-5 text-center">
-          Product not found
+          There are no products!
         </div>
       ) : (
         filteredProducts.map((product) => (

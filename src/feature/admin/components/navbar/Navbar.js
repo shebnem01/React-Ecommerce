@@ -8,18 +8,18 @@ const Navbar = () => {
     <div className={styles.navbar}>
       <nav>
         <ul>
-          <li>
+          {/* <li>
             <NavLink className={activeLink}  to={ROUTER.DASHBOARD}>Dashboard</NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink className={activeLink} to={ROUTER.ALL_PRODUCTS}>All products</NavLink>
           </li>
           <li>
             <NavLink className={activeLink}  to={ROUTER.ADD_PRODUCTS+"/add"}>Add products </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink className={activeLink}  to={ROUTER.ADMIN_ORDERS}>Orders</NavLink>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </div>

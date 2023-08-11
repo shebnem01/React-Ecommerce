@@ -15,7 +15,7 @@ const filterSlice = createSlice({
           product.name.toLowerCase().includes(search.toLowerCase()) ||
           product.category.toLowerCase().includes(search.toLowerCase())
       );
-      
+
       state.filteredProducts = newProduct;
     },
     SORT_FİLTER: (state, action) => {
@@ -43,7 +43,7 @@ const filterSlice = createSlice({
       if (sort === "Z-A") {
         newProducts = [...products].sort((a, b) => {
           return b.name.localeCompare(a.name);
-        });
+        });  
       }
       state.filteredProducts = newProducts;
     },
@@ -54,8 +54,8 @@ const filterSlice = createSlice({
       //   // newProducts = products;
       //   state.filteredProducts = products;
       // }
-      let s=products.map((item) => item.category)
-      console.log(s,category)
+      let s = products.map((item) => item.category);
+      console.log(s, category);
       newProducts = products.filter((item) => item.category === category);
       state.filteredProducts = newProducts;
     },
@@ -73,11 +73,11 @@ const filterSlice = createSlice({
       let newProducts = [];
       newProducts = products.filter((item) => item.price <= price);
       state.filteredProducts = newProducts;
-    }, GET_PRODUCTS:(state,action)=>{
-      state.filteredProducts=action.payload
-    }
+    },
+    GET_PRODUCTS: (state, action) => {
+      state.filteredProducts = action.payload;
+    },
   },
- 
 });
 export const selectFilteredProducts = (state) => state.filter.filteredProducts;
 export const {
@@ -86,7 +86,7 @@ export const {
   SORT_CATEGORY,
   SORT_BRAND,
   SORT_PRICE,
-  GET_PRODUCTS
+  GET_PRODUCTS,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

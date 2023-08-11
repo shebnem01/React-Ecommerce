@@ -1,6 +1,6 @@
-import Footer from "components/Footer/Footer";
-import Header from "components/Header/Header";
-import { AdminOnlyRoute } from "feature/header/components/hiddenLinks/HiddenLinks";
+import Footer from "feature/footer";
+import Header from "feature/header";
+import { AdminOnlyRoute } from "feature/header/HiddenLinks";
 import ProductDetail from "feature/products/components/productDetail/ProductDetail";
 import Admin from "pages/Admin";
 import Login from "pages/Auth/Login";

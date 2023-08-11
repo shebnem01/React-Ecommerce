@@ -16,7 +16,7 @@ import {
   AdminOnlyLink,
   ShowLogin,
   ShowLogout,
-} from "feature/header/components/hiddenLinks/HiddenLinks";
+} from "feature/header/HiddenLinks";
 import {
   CALCULATE_SUB_QUANTITY,
   selectCartItems,

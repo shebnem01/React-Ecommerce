@@ -61,7 +61,7 @@
     color: #fff;
 }
 .add-to-cart{
-    background-color: var(--color-menu-act);
+    background-color:var(--primary-color);
     color: #fff;
     margin-top: 15px;
    width: 150px;

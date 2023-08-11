@@ -21,7 +21,7 @@
     color: #333;
 }
 .list li{
-    color: var(--color-menu-act);
+    color: var(--primary-color);
     position: relative;
 }
 .list li:last-child:before{

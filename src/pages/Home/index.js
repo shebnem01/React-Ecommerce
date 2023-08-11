@@ -8,7 +8,7 @@ const Home = () => {
     <>
       <Slider/>
      <div className="container">
-     <Categories/>
+      <Categories/>
       <div className={styles.title}>Our Products</div>
       <Products/>
      </div>

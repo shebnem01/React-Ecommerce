@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import { BiUserCircle, BiChevronDown } from "react-icons/bi";
 import { BsList } from "react-icons/bs";
@@ -10,7 +10,7 @@ import { auth } from "../../firebase/config";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { ROUTER } from "shared/constant/router";
-import Logo from "shared/components/Logo/Logo";
+import Logo from "shared/components/Logo";
 import { REMOVE_ACTIVE_USER, SET_ACTIVE_USER } from "redux/slice/authSlice";
 import {
   AdminOnlyLink,
@@ -22,7 +22,7 @@ import {
   selectCartItems,
   selectSubQuantity,
 } from "redux/slice/cartSlice";
-
+import { activeClassName } from "shared/helper/isActiveMenu";
 const Header = () => {
   const [actieMenu, setActiveMenu] = useState(false);
   const [userName, setUserName] = useState("");
@@ -58,9 +58,9 @@ const Header = () => {
   useEffect(() => {
     dispatch(CALCULATE_SUB_QUANTITY(cartItems));
   }, [dispatch, cartItems]);
-  const handleShow = () => {
+  const handleShow = useCallback(() => {
     setActiveMenu((prevActiveMenu) => !prevActiveMenu);
-  };
+  },[actieMenu])
 
   const handleLogOut = () => {
     signOut(auth)
@@ -72,8 +72,7 @@ const Header = () => {
         toast.error(error.message);
       });
   };
-  const activeClassName = ({ isActive }) =>
-    isActive ? `${styles.active}` : "";
+
 
   return (
     <header className={styles.header}>

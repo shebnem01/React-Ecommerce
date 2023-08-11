@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styles from './CategoryItem.module.css'
 const CategoryItem = ({cat}) => {
   return (
@@ -8,4 +8,4 @@ const CategoryItem = ({cat}) => {
   )
 }
 
-export default CategoryItem
+export default memo(CategoryItem)

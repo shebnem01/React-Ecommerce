@@ -36,7 +36,7 @@
         border-color: #000;
     }
     .add-btn{
-        background-color: var(--color-menu-act);
+        background-color: var(--primary-color);
         color:#fff;
         width: 200px;
         height: 45px;

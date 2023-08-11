@@ -39,7 +39,7 @@
 }
 
 .slider-btn:hover {
-    background-color: var(--color-menu-act);
+    background-color:var(--primary-color);
 }
 
 @media(max-width:1200px) {

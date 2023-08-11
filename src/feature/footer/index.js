@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Footer.module.css";
-import Logo from "shared/components/Logo/Logo";
+import Logo from "shared/components/Logo";
 import { ROUTER } from "shared/constant/router";
 import { Link } from "react-router-dom";
 const Footer = () => {

@@ -6,7 +6,7 @@
     background-color: #eee;
 }
 .product-filter::-webkit-scrollbar-thumb  {
-    background: var(--color-menu-act) !important;
+    background: var(--primary-color) !important;
   }
 .categories,.brand{
     display: flex;
@@ -21,7 +21,7 @@
     text-align: left;
 }
 .active{
-    color:var(--color-menu-act) !important;
+    color:var(--primary-color) !important;
 }
 .filter-head{
     font-size: 20px;
@@ -30,7 +30,7 @@
     margin-bottom: 10px;
 }
 .btn{
-    background-color: var(--color-menu-act);
+    background-color: var(--primary-color);
     color:#fff;
     width: 200px;
     height: 45px;

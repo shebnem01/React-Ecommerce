@@ -1,6 +1,6 @@
 .navbar {
     border-radius: 5px;
-    background-color: var(--color-menu-act);
+    background-color: var(--primary-color);
     padding: 20px;
     margin-bottom: 30px;
 }

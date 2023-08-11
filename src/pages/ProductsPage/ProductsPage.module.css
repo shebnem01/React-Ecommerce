@@ -20,7 +20,7 @@
 .icons{
     display: flex;
     gap: 10px;
-    color: var(--color-menu-act);
+    color:var(--primary-color);
     margin-right: 20px;
 }
 .icons *{
@@ -38,7 +38,7 @@
 }
 .select{
     box-shadow: none !important;
-    border-color: var(--color-menu-act ) !important;
+    border-color: var(--primary-color) !important;
     text-transform: capitalize;
 }
 @media(max-width:992px){

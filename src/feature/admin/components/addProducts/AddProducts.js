@@ -3,14 +3,14 @@ import styles from "./AddProduct.module.css";
 import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../../../../firebase/config";
 import { toast } from "react-toastify";
-import { Timestamp, addDoc, collection, doc, setDoc } from "firebase/firestore";
+import {  addDoc, collection, doc, setDoc } from "firebase/firestore";
 import Loader from "shared/components/Loader/Loader";
 import { useNavigate, useParams } from "react-router-dom";
 import { ROUTER } from "shared/constant/router";
 import { useSelector } from "react-redux";
 import { selectProducts } from "redux/slice/productSlice";
 import { categoryData } from "mock/categoryData";
-
+import {BiCloudUpload} from 'react-icons/bi'
 const initialState = {
   name: "",
   category: "",
@@ -147,8 +147,8 @@ const AddProducts = () => {
             />
           </div>
 
-          <div className={styles["form-group"]}>
-            <label>Product image</label>
+          <div className={`${styles["form-group"]} ${styles["upload-img"]}`}>
+            <label for="upload"><BiCloudUpload/>Upload image</label>
             {uploadProgress > 0 && (
               <div className={styles["progress-bar"]}>
                 <div className={styles.progress}>
@@ -158,7 +158,7 @@ const AddProducts = () => {
                 </div>
               </div>
             )}
-            <input required type="file" accept="image/*" onChange={addImage} />
+            <input id="upload" required type="file" accept="image/*" onChange={addImage} />
 
             {uploadProgress > 0 && (
               <input 

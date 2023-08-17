@@ -45,3 +45,14 @@
         justify-content: center;
         margin: 15px 0;
     }
+    .upload-img{
+        border: 1px solid #eee;
+        padding: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 18px;
+    }
+    .upload-img input{
+        display: none;
+    }
